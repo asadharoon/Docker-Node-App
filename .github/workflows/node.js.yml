@@ -1,0 +1,40 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI #name of workflow
+
+on:
+  push:
+    branches: [ main ] # in main branch push this workflow will run
+  pull_request:
+    branches: [ main ]
+
+jobs: # a set of actions
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2 #checkout code first
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2 #selects an action
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci #run in the command line
+    - run: npm run build --if-present
+    - run: npm test
+
+    - name: Login to Docker Hub
+      run: docker login --username "${{ secrets.Docker_username }}" --password "${{ secrets.Docker_password }}"
+
+    - name: Build the Docker Image 
+      run: docker build . --file Dockerfile --tag asadharoon70/docker-node-app
+
+    - name: Push the Docker Image 
+      run: docker push docker-node-app
