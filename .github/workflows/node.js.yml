@@ -34,7 +34,7 @@ jobs: # a set of actions
       run: docker login --username "${{ secrets.Docker_username }}" --password "${{ secrets.Docker_password }}"
 
     - name: Build the Docker Image 
-      run: docker build . -t asadharoon70/docker-node-app
+      run: docker build . --file Dockerfile --tag asadharoon70/docker-node-app
 
     - name: Push the Docker Image 
       run: docker push asadharoon70/docker-node-app
