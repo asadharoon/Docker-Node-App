@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function closureFunc() {
+        let a = 0;
+        a = sum(1, 2, 3);
+        console.log(a);
+      }
+      const sum = (...args) => {
+        let a = 0;
+        console.log(args);
+        args.forEach((v, i) => {
+          a += v;
+        });
+        return a;
+      };
+      function closure() {
+        var a = 0;
+        function closureB() {
+          console.log(a);
+        }
+      }
+      function makeFunc() {
+        var name = "Mozilla";
+        function displayName() {
+          console.log(`Hi ${name}`);
+        }
+        return displayName;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>In docker node app</h1>
+  </body>
+</html>

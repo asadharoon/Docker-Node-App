@@ -15,7 +15,7 @@ const getDatawithAwait = async () => {
 const getDataWithNewPromise = async () => {
     let p1 = new Promise((resolve, reject) => {
         fetch("https://jsonplaceholder.typicode.com/todos/").then((d) => {
-            console.log("in resolve")
+
             resolve(d.json());
         }).catch((err) => {
             reject(err);
@@ -38,3 +38,21 @@ const getDataWithCallbacks = (callback) => {
 // })
 // getDataInPromise();
 // getDatawithAwait()
+
+
+function makeFunc() {
+    var name = "Mozilla";
+    function displayName() {
+        console.log(`Hi ${name}`);
+    }
+    return displayName;
+}
+function closureA() {
+    var counter = 0;
+    return (() => {
+        return counter += 1;
+    })()
+}
+
+let a = closureA();
+console.log(a)
