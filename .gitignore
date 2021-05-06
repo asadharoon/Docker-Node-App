@@ -1,5 +1,6 @@
 node_modules
 build
+githubCommit.js
 npm-debug.log
 .nyc
 .env

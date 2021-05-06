@@ -1,6 +1,20 @@
 version: "3"
 
 services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+
+  postgres:
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: testDB
+      POSTGRES_PASSWORD: postgres
   zoo1:
     image: zookeeper:3.4.9
     restart: unless-stopped
