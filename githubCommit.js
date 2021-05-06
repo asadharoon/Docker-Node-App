@@ -9,7 +9,7 @@ function cb(err, strout, stdin) {
     }
 
 }
-exec("git add .", cb);
+exec(`git add .`, cb);
 exec(`git commit -m "${str}"`, cb);
 exec("git push origin main");
 
