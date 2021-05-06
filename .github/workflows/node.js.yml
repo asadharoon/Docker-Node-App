@@ -37,4 +37,4 @@ jobs: # a set of actions
       run: docker build . --file Dockerfile --tag asadharoon70/docker-node-app
 
     - name: Push the Docker Image 
-      run: docker push docker-node-app
+      run: docker push asadharoon70/docker-node-app
