@@ -7,6 +7,7 @@ function cb(err, strout, stdin) {
         console.log(err);
         return;
     }
+    console.log(strout, stdin)
 
 }
 exec(`git add .`, cb);
